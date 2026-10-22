@@ -1,23 +1,28 @@
 name: Build APK
 on: [push, workflow_dispatch]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: set up JDK 17
+    
+    - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
-    - name: Build APK
-      run: |
-        cd tvhome
-        chmod +x gradlew
-        ./gradlew assembleDebug
-    - name: Upload APK
+        
+    - name: Dar permisos
+      run: chmod +x ./gradlew
+      
+    - name: Compilar APK Final
+      run: ./gradlew assembleRelease
+      
+    - name: Entregar Descarga
       uses: actions/upload-artifact@v4
       with:
         name: CleanYourTV-App
         path: '**/*.apk'
+        
