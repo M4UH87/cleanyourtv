@@ -18,7 +18,7 @@ jobs:
           
       - uses: gradle/actions/setup-gradle@v4
       
-      - name: Compilar APK sin bloqueos
+      - name: Compilar APK
         working-directory: launcher
         run: |
           chmod +x gradlew
